@@ -1,4 +1,10 @@
 .main-content{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.data-output{
+    width: 200px;
+    height: 200px;
 }
