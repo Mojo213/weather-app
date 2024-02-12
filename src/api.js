@@ -16,7 +16,7 @@ export default async function getLocationData() {
   }
   
   async function fetchData(searchTerm) {
-    const api = 'YOUR_API_KEY_HERE';
+    const api = 'd34d76793d0e448b9db151730242001';
     try {
       const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${api}&q=${searchTerm}&aqi=no`, { mode: 'cors' });
       if (!response.ok) {
