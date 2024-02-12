@@ -1,5 +1,5 @@
 import ui from './UI';
-import getLocationData from './API';
+import getLocationData from './api';
 
 ui();
 getLocationData();
