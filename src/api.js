@@ -7,7 +7,9 @@ export default async function getLocationData() {
       if (searchTerm !== '') {
         try {
           const data = await fetchData(searchTerm);
-          console.log(data);
+          const keyInfo = processData(data);
+          displayData(keyInfo);
+          console.log(keyInfo);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -28,3 +30,34 @@ export default async function getLocationData() {
     }
   }
   
+  function processData(data) {
+    const dataObj = {
+        location: data.location.name,
+        feelslike_f: data.current.feelslike_f,
+        feelslike_c: data.current.feelslike_c
+    };
+    return dataObj;
+}
+
+function displayData(dataObj) {
+    const dataDisplay = document.querySelector('data-output');
+    const locationDiv = document.createElement('div');
+    const feelsLikeDivF = document.createElement('div');
+    const feelsLikeDivC = document.createElement('div');
+
+    locationDiv.className = 'location';
+    feelsLikeDivC.className = 'feels-likeC';
+    feelsLikeDivF.className = 'feels-likeF';
+
+    locationDiv.textContent = dataObj.location;
+    feelsLikeDivC.textContent = dataObj.feelslike_c;
+    feelsLikeDivF.textContent = dataObj.feelslike_f;
+
+    dataDisplay.appendChild(locationDiv);
+    dataDisplay.appendChild(feelsLikeDivC);
+    dataDisplay.appendChild(feelsLikeDivF);
+
+    return dataDisplay;
+}
+
+
