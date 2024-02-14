@@ -31,8 +31,8 @@ function displayData(dataObj) {
   feelsLikeDivF.className = 'feels-likeF';
 
   locationDiv.textContent = dataObj.location;
-  feelsLikeDivC.textContent = dataObj.feelslike_c;
-  feelsLikeDivF.textContent = dataObj.feelslike_f;
+  feelsLikeDivC.textContent = `Feels like ${dataObj.feelslike_c} C`;
+  feelsLikeDivF.textContent = `Feels like ${dataObj.feelslike_f} F`;
 
   dataDisplay.appendChild(locationDiv);
   dataDisplay.appendChild(feelsLikeDivC);
