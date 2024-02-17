@@ -16,6 +16,7 @@ function processData(data) {
     location: data.location.name,
     feelslike_f: data.current.feelslike_f,
     feelslike_c: data.current.feelslike_c,
+    condition: data.current.condition.text,
   };
   return dataObj;
 }
@@ -25,18 +26,22 @@ function displayData(dataObj) {
   const locationDiv = document.createElement('div');
   const feelsLikeDivF = document.createElement('div');
   const feelsLikeDivC = document.createElement('div');
+  const condition = document.createElement('div');
 
   locationDiv.className = 'location';
   feelsLikeDivC.className = 'feels-likeC';
   feelsLikeDivF.className = 'feels-likeF';
+  condition.className = 'condition';
 
   locationDiv.textContent = dataObj.location;
   feelsLikeDivC.textContent = `Feels like ${dataObj.feelslike_c} C`;
   feelsLikeDivF.textContent = `Feels like ${dataObj.feelslike_f} F`;
+  condition.textContent = dataObj.condition;
 
   dataDisplay.appendChild(locationDiv);
   dataDisplay.appendChild(feelsLikeDivC);
   dataDisplay.appendChild(feelsLikeDivF);
+  dataDisplay.appendChild(condition);
 
   return dataDisplay;
 }
@@ -52,6 +57,7 @@ export default async function getLocationData() {
         const data = await fetchData(searchTerm);
         const keyInfo = processData(data);
         displayData(keyInfo);
+        console.log(data);
         console.log(keyInfo);
       } catch (error) {
         console.error('Error fetching data:', error);
