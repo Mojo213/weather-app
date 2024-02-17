@@ -33,6 +33,7 @@ function displayData(dataObj) {
   feelsLikeDivF.className = 'feels-likeF';
   condition.className = 'condition';
 
+  dataDisplay.innerHTML = '';
   locationDiv.textContent = dataObj.location;
   feelsLikeDivC.textContent = `Feels like ${dataObj.feelslike_c} C`;
   feelsLikeDivF.textContent = `Feels like ${dataObj.feelslike_f} F`;
