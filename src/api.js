@@ -14,9 +14,16 @@ async function fetchData(searchTerm) {
 function processData(data) {
   const dataObj = {
     location: data.location.name,
+    locationCountry: data.location.country,
     feelslike_f: data.current.feelslike_f,
     feelslike_c: data.current.feelslike_c,
     condition: data.current.condition.text,
+    wind_mph: data.current.wind_mph,
+    humidity: data.current.humidity,
+    uvIndex: data.current.uv,
+    lastUpdated: data.current.last_updated,
+    tempC: data.current.temp_c,
+    tempF: data.current.temp_f,
   };
   return dataObj;
 }
@@ -24,25 +31,53 @@ function processData(data) {
 function displayData(dataObj) {
   const dataDisplay = document.querySelector('.data-output');
   const locationDiv = document.createElement('div');
+  const locationCountryDiv = document.createElement('div');
   const feelsLikeDivF = document.createElement('div');
   const feelsLikeDivC = document.createElement('div');
   const condition = document.createElement('div');
+  const windMph = document.createElement('div');
+  const humidity = document.createElement('div');
+  const uvIndex = document.createElement('div');
+  const lastUpdated = document.createElement('div');
+  const tempC = document.createElement('div');
+  const tempF = document.createElement('div');
 
   locationDiv.className = 'location';
+  locationCountryDiv.className = 'location-country';
   feelsLikeDivC.className = 'feels-likeC';
   feelsLikeDivF.className = 'feels-likeF';
   condition.className = 'condition';
+  windMph.className = 'wind';
+  humidity.className = 'humidity';
+  uvIndex.className = 'uvIndex';
+  lastUpdated.className = 'lastUpdated';
+  tempC.className = 'tempC';
+  tempF.className = 'tempF';
 
   dataDisplay.innerHTML = '';
   locationDiv.textContent = dataObj.location;
-  feelsLikeDivC.textContent = `Feels like ${dataObj.feelslike_c} C`;
-  feelsLikeDivF.textContent = `Feels like ${dataObj.feelslike_f} F`;
+  locationCountryDiv.textContent = dataObj.locationCountry;
+  feelsLikeDivC.textContent = `Feels like: ${dataObj.feelslike_c}C`;
+  feelsLikeDivF.textContent = `Feels like: ${dataObj.feelslike_f}F`;
   condition.textContent = dataObj.condition;
+  windMph.textContent = `Wind: ${dataObj.wind_mph}`;
+  humidity.textContent = `Humidity: ${dataObj.humidity}`;
+  uvIndex.textContent = `UV: ${dataObj.uvIndex}`;
+  lastUpdated.textContent = `Last Updated: ${dataObj.lastUpdated}`;
+  tempC.textContent = `Temp: ${dataObj.tempC}C`;
+  tempF.textContent = `Temp: ${dataObj.tempF}F`;
 
   dataDisplay.appendChild(locationDiv);
+  dataDisplay.appendChild(locationCountryDiv);
   dataDisplay.appendChild(feelsLikeDivC);
   dataDisplay.appendChild(feelsLikeDivF);
   dataDisplay.appendChild(condition);
+  dataDisplay.appendChild(windMph);
+  dataDisplay.appendChild(humidity);
+  dataDisplay.appendChild(uvIndex);
+  dataDisplay.appendChild(lastUpdated);
+  dataDisplay.appendChild(tempC);
+  dataDisplay.appendChild(tempF);
 
   return dataDisplay;
 }
