@@ -1,5 +1,6 @@
-import ui from './UI';
+import ui, { toggleTemp } from './UI';
 import getLocationData from './api';
 
 ui();
 getLocationData();
+toggleTemp();
