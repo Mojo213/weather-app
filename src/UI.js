@@ -20,13 +20,20 @@ export default function ui() {
   mainContent.appendChild(dataOutput);
 }
 
-export function toggleTemp() {
+export function toggleTemp(dataObj) {
   const tempToggle = document.querySelector('.temp-toggle');
+  const feelsLikeDiv = document.querySelector('.feels-like');
+  const temperature = document.querySelector('.temperature');
+
   tempToggle.addEventListener('click', () => {
     if (tempToggle.textContent === 'Celsius') {
       tempToggle.textContent = 'Fahrenheit';
+      feelsLikeDiv.textContent = `Feels like: ${dataObj.feelslike_f}F`;
+      temperature.textContent = `Temp: ${dataObj.tempF}F`;
     } else {
       tempToggle.textContent = 'Celsius';
+      feelsLikeDiv.textContent = `Feels like: ${dataObj.feelslike_c}C`;
+      temperature.textContent = `Temp: ${dataObj.tempC}C`;
     }
   });
 }

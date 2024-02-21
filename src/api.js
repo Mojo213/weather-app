@@ -1,3 +1,5 @@
+import { toggleTemp } from './UI';
+
 async function fetchData(searchTerm) {
   const api = 'd34d76793d0e448b9db151730242001';
   try {
@@ -32,52 +34,45 @@ function displayData(dataObj) {
   const dataDisplay = document.querySelector('.data-output');
   const locationDiv = document.createElement('div');
   const locationCountryDiv = document.createElement('div');
-  const feelsLikeDivF = document.createElement('div');
-  const feelsLikeDivC = document.createElement('div');
+  const feelsLikeDiv = document.createElement('div');
   const condition = document.createElement('div');
   const windMph = document.createElement('div');
   const humidity = document.createElement('div');
   const uvIndex = document.createElement('div');
   const lastUpdated = document.createElement('div');
-  const tempC = document.createElement('div');
-  const tempF = document.createElement('div');
+  const temperature = document.createElement('div');
 
   locationDiv.className = 'location';
   locationCountryDiv.className = 'location-country';
-  feelsLikeDivC.className = 'feels-likeC';
-  feelsLikeDivF.className = 'feels-likeF';
+  feelsLikeDiv.className = 'feels-like';
   condition.className = 'condition';
   windMph.className = 'wind';
   humidity.className = 'humidity';
   uvIndex.className = 'uvIndex';
   lastUpdated.className = 'lastUpdated';
-  tempC.className = 'tempC';
-  tempF.className = 'tempF';
+  temperature.className = 'temperature';
 
   dataDisplay.innerHTML = '';
   locationDiv.textContent = dataObj.location;
   locationCountryDiv.textContent = dataObj.locationCountry;
-  feelsLikeDivC.textContent = `Feels like: ${dataObj.feelslike_c}C`;
-  feelsLikeDivF.textContent = `Feels like: ${dataObj.feelslike_f}F`;
+  feelsLikeDiv.textContent = `Feels like: ${dataObj.feelslike_c}C`;
+
   condition.textContent = dataObj.condition;
   windMph.textContent = `Wind: ${dataObj.wind_mph}`;
   humidity.textContent = `Humidity: ${dataObj.humidity}`;
   uvIndex.textContent = `UV: ${dataObj.uvIndex}`;
   lastUpdated.textContent = `Last Updated: ${dataObj.lastUpdated}`;
-  tempC.textContent = `Temp: ${dataObj.tempC}C`;
-  tempF.textContent = `Temp: ${dataObj.tempF}F`;
+  temperature.textContent = `Temp: ${dataObj.tempC}C`;
 
   dataDisplay.appendChild(locationDiv);
   dataDisplay.appendChild(locationCountryDiv);
-  dataDisplay.appendChild(feelsLikeDivC);
-  dataDisplay.appendChild(feelsLikeDivF);
+  dataDisplay.appendChild(feelsLikeDiv);
   dataDisplay.appendChild(condition);
   dataDisplay.appendChild(windMph);
   dataDisplay.appendChild(humidity);
   dataDisplay.appendChild(uvIndex);
   dataDisplay.appendChild(lastUpdated);
-  dataDisplay.appendChild(tempC);
-  dataDisplay.appendChild(tempF);
+  dataDisplay.appendChild(temperature);
 
   return dataDisplay;
 }
@@ -93,6 +88,7 @@ export default async function getLocationData() {
         const data = await fetchData(searchTerm);
         const keyInfo = processData(data);
         displayData(keyInfo);
+        toggleTemp(keyInfo);
         console.log(data);
         console.log(keyInfo);
       } catch (error) {
