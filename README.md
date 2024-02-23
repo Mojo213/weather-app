@@ -1,4 +1,4 @@
-Weather App Project README
+#Weather App Project 
 
 Project Overview
 This project is a simple weather application that fetches real-time weather data from the WeatherAPI.com API based on user-provided location input. The application displays various weather metrics such as temperature, humidity, wind speed, UV index, and more. Additionally, it dynamically updates the background image based on the current weather condition fetched from the API. Users can also toggle between Celsius and Fahrenheit temperature units.
