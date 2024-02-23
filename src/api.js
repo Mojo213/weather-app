@@ -1,4 +1,4 @@
-import { toggleTemp } from './UI';
+import { toggleTemp, backgroundImageUpdater } from './UI';
 
 async function fetchData(searchTerm) {
   const api = 'd34d76793d0e448b9db151730242001';
@@ -88,6 +88,7 @@ export default async function getLocationData() {
         const data = await fetchData(searchTerm);
         const keyInfo = processData(data);
         displayData(keyInfo);
+        backgroundImageUpdater(keyInfo);
         toggleTemp(keyInfo);
         console.log(data);
         console.log(keyInfo);
