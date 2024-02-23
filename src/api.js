@@ -90,10 +90,8 @@ export default async function getLocationData() {
         displayData(keyInfo);
         backgroundImageUpdater(keyInfo);
         toggleTemp(keyInfo);
-        console.log(data);
-        console.log(keyInfo);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        alert(error.message);
       }
     }
   });
