@@ -96,4 +96,5 @@ export function backgroundImageUpdater(dataObj) {
   }
 
   body.style.backgroundImage = `url("${url}")`;
+  body.setAttribute('aria-label', `Background image: ${condition}`);
 }
